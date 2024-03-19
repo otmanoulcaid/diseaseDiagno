@@ -13,6 +13,7 @@ from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
+from sklearn.base import TransformerMixin, BaseEstimator
 
 
 #read training csv using read_scv method that convert the csv content to a dataframe
@@ -22,6 +23,32 @@ df=pd.read_csv("Training.csv")
 
 df_test=pd.read_csv("Testing.csv")
 # print(df_test)
+
+
+class   Droper(TransformerMixin, BaseEstimator):
+    def fit(self, X, y=None):
+          return (self)
+    def transform(self, X, y):
+          return (X.drop(['Unnamed: 133'], axis=y))
+    
+
+class   Getter(TransformerMixin, BaseEstimator):
+      def fit(self, X, y=None):
+            return (self)
+      def   transform(self, X, y):
+            if (y == 1):
+                  return (X.iloc[:, -1])
+            return (X.iloc[:,:-1])
+      
+
+class   Encoder(TransformerMixin, BaseEstimator):
+      def fit(self, X, y = None):
+            return (self)
+      def transform(self, X):
+        encoder = LabelEncoder()
+        return (encoder.fit_transform(X))
+
+
 
 
 # clean the data by dropping the null or empty feature (column)
@@ -40,7 +67,6 @@ X_test, y_test=df_test.iloc[19:20,:-1], df_test.iloc[ 19:20,-1]
 
 #instanciate an object from LabelEncoder() class in order to encode all the labels using integer encoding
 #look at the ML Notes File (wrotten by otman oulcaid)
-label_encoder_y = LabelEncoder()
 
 # Fit and transform y of tain dataframe
 y_encoded = label_encoder_y.fit_transform(y)
@@ -51,6 +77,7 @@ y_testencoded = label_encoder_y.fit_transform(y_test)
 # print(y_testencoded)
 
 
+label_encoder_y = LabelEncoder()
 
 #creating a dictionary that contains all the algorithms that we will deal with 
 
