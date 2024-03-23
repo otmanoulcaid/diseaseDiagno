@@ -6,15 +6,15 @@ import pandas as pd
 
 #some of sklearn algorithms used in our projects
 
-# from sklearn.metrics import accuracy_score
-# from IPython.display import display
-# from sklearn.linear_model import LogisticRegression
-# from sklearn.tree import DecisionTreeClassifier
-# from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-# from sklearn.svm import SVC
-# from sklearn.neighbors import KNeighborsClassifier
-# from sklearn.naive_bayes import GaussianNB
-# from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score
+from IPython.display import display
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neural_network import MLPClassifier
 
 #read training csv using read_scv method that convert the csv content to a dataframe
 df_train=pd.read_csv("Training.csv")
@@ -65,21 +65,25 @@ label_prepros = Pipeline([
 
 #tests of pipelines
 
-print(feature_prepros.fit_transform(df_test))
-print(label_prepros.fit_transform(df_test))
+# print(feature_prepros.fit_transform(df_test))
+# print(label_prepros.fit_transform(df_test))
 
 # #creating a dictionary that contains all the algorithms that we will deal with 
 
-# classification_models = {
-#     'Logistic Regression': LogisticRegression(),
-#     # 'Decision Tree': DecisionTreeClassifier(),
-#     # 'Random Forest': RandomForestClassifier(n_jobs=-1, random_state=666),
-#     # 'Gradient Boosting': GradientBoostingClassifier(),
-#     # 'SVM': SVC(),
-#     # 'K-Nearest Neighbors': KNeighborsClassifier(),
-#     # 'Naive Bayes': GaussianNB(),
-#     # 'Neural Network': MLPClassifier()
-# }
+
+
+class   Models():
+    def Models(self):
+        return (self)
+    def fit_predict(slf, model, train_feat, train_label, test_feat):
+        model.fit(train_feat, train_label)
+        return model.predict(test_feat)
+
+    def accuracy(self, anc_label, predict_label):
+        return accuracy_score(anc_label, predict_label)
+
+    
+
 
 # #loop through all the the algorithms and save the result into an array list of dictionary
 # result_list=[]
