@@ -16,6 +16,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 
+
+
 #read training csv using read_scv method that convert the csv content to a dataframe
 df_train=pd.read_csv("Training.csv")
 # print(df)
@@ -70,17 +72,30 @@ label_prepros = Pipeline([
 
 # #creating a dictionary that contains all the algorithms that we will deal with 
 
-
-
 class   Models():
+
     def Models(self):
         return (self)
+
     def fit_predict(slf, model, train_feat, train_label, test_feat):
-        model.fit(train_feat, train_label)
+        if train_feat is not None and train_label is not None:
+            model.fit(train_feat, train_label)
         return model.predict(test_feat)
 
-    def accuracy(self, anc_label, predict_label):
-        return accuracy_score(anc_label, predict_label)
+    def accuracy(self, encoded_label, predict_label):
+        return accuracy_score(encoded_label, predict_label)
+
+    def get_models():
+            return {
+        "LogisticRegression" : LogisticRegression(),
+        "DecisionTreeClassifier" : DecisionTreeClassifier(),
+        "RandomForestClassifier" : RandomForestClassifier(), 
+        "GradientBoostingClassifier" : GradientBoostingClassifier(),
+        "SVC" : SVC(), 
+        "KNeighborsClassifier" : KNeighborsClassifier() ,
+        "GaussianNB" : GaussianNB(),
+        "MLPClassifier" : MLPClassifier()
+        }
 
     
 
