@@ -10,7 +10,7 @@ class   DataSpliter():
         return self
 
     def split(self, x, y)
-        return (train_test_split(x, y, test_size=self.size, random_state=self.random_state))
+        return (train_test_split(x, y, test_size=self.t_size, random_state=self.random_state))
 
 class FeatureGetter(TransformerMixin, BaseEstimator):
     def fit(self, X, y=None):
