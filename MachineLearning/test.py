@@ -28,14 +28,15 @@ test_label = label_prepros.fit_transform(df_test)
 train_feat = feature_prepros.fit_transform(df_train)
 train_label = label_prepros.fit_transform(df_train)
 
+print(train_feat)
 #test algos
 
-mod = Models()
-model_name = mod.algos["LogisticRegression"]
-train_predect = mod.predict_label( model_name, train_feat, train_label, train_feat)
-test_predect = mod.predict_label( model_name, train_feat, train_label, test_feat)
-train_accuracy = mod.accuracy(train_label, train_predect)
-valid_accuracy = mod.accuracy(test_label, test_predect)
+# mod = Models()
+# model_name = mod.algos["LogisticRegression"]
+# train_predect = mod.predict_label( model_name, train_feat, train_label, train_feat)
+# test_predect = mod.predict_label( model_name, train_feat, train_label, test_feat)
+# train_accuracy = mod.accuracy(train_label, train_predect)
+# valid_accuracy = mod.accuracy(test_label, test_predect)
 
-print(train_accuracy)
-print(valid_accuracy)
+# print(train_accuracy)
+# print(valid_accuracy)
