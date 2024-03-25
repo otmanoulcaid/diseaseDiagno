@@ -1,5 +1,16 @@
 from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+
+
+class   DataSpliter():
+    def __int__(self, size, random):
+        self.t_size = size
+        self.random_state = random
+        return self
+
+    def split(self, x, y)
+        return (train_test_split(x, y, test_size=self.size, random_state=self.random_state))
 
 class FeatureGetter(TransformerMixin, BaseEstimator):
     def fit(self, X, y=None):
