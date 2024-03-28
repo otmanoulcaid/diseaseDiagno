@@ -37,3 +37,15 @@ class   Droper(TransformerMixin, BaseEstimator):
         if 'Unnamed: 133' in X.columns:
             return (X.drop(['Unnamed: 133'], axis=1))
         return X
+
+class   DataExtractor():
+    def DataExtractor(self):
+        return self
+    
+    #list 
+    def symptoms(self, X):
+        return(X.columns.tolist())
+
+    def labels(self, X):
+        return(X.prognosis.tolist())
+

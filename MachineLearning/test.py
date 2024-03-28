@@ -1,7 +1,15 @@
 from preprocessing import FeatureGetter, LabelGetter, Encoder, Droper, DataSpliter
 from sklearn.pipeline import Pipeline
-from models import Models
+from models import Statistic
 import pandas as pd
+
+#some of sklearn algorithms used in our projects
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
 #read training csv using read_scv method that convert the csv content to a dataframe
 df_train=pd.read_csv("Training.csv")
@@ -23,23 +31,31 @@ label_prepros = Pipeline([
 
 #tests of pipelines
 
-test_feat = feature_prepros.fit_transform(df_test)
-test_label = label_prepros.fit_transform(df_test)
-train_feat = feature_prepros.fit_transform(df_train)
-train_label = label_prepros.fit_transform(df_train)
+models = {
+            "LogisticRegression" : LogisticRegression(),
+            "DecisionTreeClassifier" : DecisionTreeClassifier(),
+            "RandomForestClassifier" : RandomForestClassifier(n_estimators=100), 
+            "KNeighborsClassifier" : KNeighborsClassifier(n_neighbors=3),
+            "MLPClassifier" : MLPClassifier()
+        }
+        
+statistic = Statistic(df_train, df_test)
+accuracy = statistic.models_accuracy(models, feature_prepros, label_prepros)
+print(accuracy)
 
-spliter = DataSpliter(0.5, 4)
-X_train, X_test, y_train, y_test = spliter.split(train_feat, train_label)
-
-python3 test.py | tr -d ",\'[]" | sed 's/  */ /g'
-
-print(X_train)
+# spliter = DataSpliter(0.5, 4)
+# X_train, X_test, y_train, y_test = spliter.split(train_feat, train_label)
 
 
-# print(train_feat)
-#test algos
+# test_feat = feature_prepros.fit_transform(df_test)
+# test_label = label_prepros.fit_transform(df_test)
+# train_feat = feature_prepros.fit_transform(df_train)
+# train_label = label_prepros.fit_transform(df_train)
 
-# mod = Models()
+
+# print(df_test['prognosis'].tolist())
+# features = test_feat.columns
+
 # model_name = mod.algos["LogisticRegression"]
 # train_predect = mod.predict_label( model_name, train_feat, train_label, train_feat)
 # test_predect = mod.predict_label( model_name, train_feat, train_label, test_feat)
