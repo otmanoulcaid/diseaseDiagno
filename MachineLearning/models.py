@@ -3,14 +3,12 @@ from sklearn.preprocessing import LabelEncoder
 
 #some of sklearn algorithms used in our projects
 
-from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
-from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # custom classes
 
@@ -34,10 +32,7 @@ class   Models(Operations):
                 "LogisticRegression" : LogisticRegression(),
                 "DecisionTreeClassifier" : DecisionTreeClassifier(),
                 "RandomForestClassifier" : RandomForestClassifier(), 
-                "GradientBoostingClassifier" : GradientBoostingClassifier(),
-                "SVC" : SVC(), 
                 "KNeighborsClassifier" : KNeighborsClassifier() ,
-                "GaussianNB" : GaussianNB(),
                 "MLPClassifier" : MLPClassifier()
             }
 

@@ -1,4 +1,4 @@
-from preprocessing import FeatureGetter, LabelGetter, Encoder, Droper
+from preprocessing import FeatureGetter, LabelGetter, Encoder, Droper, DataSpliter
 from sklearn.pipeline import Pipeline
 from models import Models
 import pandas as pd
@@ -28,7 +28,15 @@ test_label = label_prepros.fit_transform(df_test)
 train_feat = feature_prepros.fit_transform(df_train)
 train_label = label_prepros.fit_transform(df_train)
 
-print(train_feat)
+spliter = DataSpliter(0.5, 4)
+X_train, X_test, y_train, y_test = spliter.split(train_feat, train_label)
+
+python3 test.py | tr -d ",\'[]" | sed 's/  */ /g'
+
+print(X_train)
+
+
+# print(train_feat)
 #test algos
 
 # mod = Models()

@@ -3,14 +3,13 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 
-# class   DataSpliter():
-#     def __int__(self, size, random):
-#         self.t_size = size
-#         self.random_state = random
-#         return self
+class   DataSpliter():
+    def __init__(self, size, random):
+        self.t_size = size
+        self.random_state = random
 
-#     def split(self, x, y)
-#         return (train_test_split(x, y, test_size=self.t_size, random_state=self.random_state))
+    def split(self, x, y):
+        return (train_test_split(x, y, test_size=self.t_size, random_state=self.random_state))
 
 class FeatureGetter(TransformerMixin, BaseEstimator):
     def fit(self, X, y=None):
