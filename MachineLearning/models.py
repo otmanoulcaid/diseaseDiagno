@@ -4,7 +4,6 @@ from sklearn.preprocessing import LabelEncoder
 #some of sklearn algorithms used in our projects
 
 from sklearn.svm import SVC
-from IPython.display import display
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
