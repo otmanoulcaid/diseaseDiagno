@@ -17,12 +17,12 @@ class LinearRegressionCustom:
             predictions = np.dot(X, self.weights) + self.bias
 
             # Compute gradients
-            dW = (1 / num_samples) * np.dot(X.T, (predictions - y))
-            db = (1 / num_samples) * np.sum(predictions - y)
+            dW = np.dot(X.T, (predictions - y)) / num_samples
+            db = np.sum(predictions - y) / num_samples
 
             # Update weights and bias
             self.weights -= self.learning_rate * dW
-            self.bias -= self.learning_rate * db
+            self.bias -= self.lea rning_rate * db
 
     def predict(self, X):
         return np.dot(X, self.weights) + self.bias
