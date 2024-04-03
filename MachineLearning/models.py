@@ -8,7 +8,7 @@ class   Operations():
     def Operations(self):
         return (self)
 
-    def fitPredict(slf, model, train_feat, train_label, test_feat):
+    def fitPredict(self, model, train_feat, train_label, test_feat):
         model.fit(train_feat, train_label)
         return (model.predict(test_feat))
 

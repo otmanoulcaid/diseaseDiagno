@@ -10,31 +10,35 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
 #read training csv using read_scv method that convert the csv content to a dataframe
-df_train=pd.read_csv("Training.csv")
+df_train=pd.read_csv("Train.csv")
 # print(df)
 
-df_test=pd.read_csv("Testing.csv")
+df_test=pd.read_csv("Test.csv")
 # print(df_test)
 
-feature_prepros = Pipeline([
-    ("drop", Droper()),
-    ("f_getter", FeatureGetter())
-])
+drop = Droper()
+df = drop.fit_transform(df_train)
+print(df)
 
-label_prepros = Pipeline([
-    ("drop", Droper()),
-    ("get_l", LabelGetter()),
-    ("label_encoder", Encoder())
-])
+# feature_prepros = Pipeline([
+#     ("drop", Droper()),
+#     ("f_getter", FeatureGetter())
+# ])
 
-#tests of pipelines
+# label_prepros = Pipeline([
+#     ("drop", Droper()),
+#     ("get_l", LabelGetter()),
+#     ("label_encoder", Encoder())
+# ])
 
-models = {
-            "LogisticRegression" : LogisticRegression(),
-            "DecisionTreeClassifier" : DecisionTreeClassifier(),
-            "RandomForestClassifier" : RandomForestClassifier(n_estimators=100), 
-        }
+# #tests of pipelines
+ 
+# models = {
+#             "LogisticRegression" : LogisticRegression(),
+#             "DecisionTreeClassifier" : DecisionTreeClassifier(),
+#             "RandomForestClassifier" : RandomForestClassifier(n_estimators=100), 
+#         }
         
-statistic = Statistic(df_train, df_test)
-accuracy = statistic.models_accuracy(models, feature_prepros, label_prepros)
-print(accuracy)
+# statistic = Statistic(df_train, df_test)
+# accuracy = statistic.models_accuracy(models, feature_prepros, label_prepros)
+# print(accuracy)
