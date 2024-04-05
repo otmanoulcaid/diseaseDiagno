@@ -1,0 +1,6 @@
+DecisionTreeClassifier(criterion='entropy', max_depth=16, min_samples_split=6)
+{'criterion': 'entropy', 'max_depth': 16, 'min_samples_split': 6, 'splitter': 'best'}
+KNeighborsClassifier(leaf_size=20, n_neighbors=3)
+{'leaf_size': 20, 'n_neighbors': 3, 'weights': 'uniform'}
+LogisticRegression(C=0.1, max_iter=200, penalty='l2', solver='liblinear')
+{'C': 0.1, 'max_iter': 200, 'penalty': 'l2', 'solver': 'liblinear'}
