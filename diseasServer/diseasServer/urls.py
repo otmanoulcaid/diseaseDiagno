@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import post_request_managing, symptoms
+from .views import post_request_managing, getSymptoms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('predict/', post_request_managing)
-    path('getSymptoms/', symptoms)
+    path('getSymptoms/', getSymptoms)
 ]

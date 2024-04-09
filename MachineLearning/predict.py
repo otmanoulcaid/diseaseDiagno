@@ -58,4 +58,4 @@ print(result[0])
 def symptoms():
     df = pd.read_csv("DataSet.csv")
     symptoms = df.iloc[: , :-1]
-    return (symptoms.columns)
+    return (symptoms.columns.tolist())
