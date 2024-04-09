@@ -15,7 +15,7 @@ def post_request_managing(request):
         return JsonResponse({'error': 'Only POST requests are allowed'})
 
 def getSymptoms(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         return JsonResponse(symptoms())
         # return JsonResponse({'status': 'Data received successfully'})
     else:
