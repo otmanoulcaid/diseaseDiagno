@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import post_request_managing
+from .views import post_request_managing, symptoms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('request_managing/', post_request_managing)
+    path('predict/', post_request_managing)
+    path('getSymptoms/', symptoms)
 ]

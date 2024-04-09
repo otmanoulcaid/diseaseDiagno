@@ -1,4 +1,6 @@
+import json
 from django.http import JsonResponse
+from diseasediagno.MachineLearning.predict import trained_model_prediction, symptoms
 
 def post_request_managing(request):
     if request.method == 'POST':
@@ -6,8 +8,15 @@ def post_request_managing(request):
         data_json_str = request.body.decode('utf-8')
         # Convert the JSON string to a Python list
         data_list = json.loads(data_json_str)
-        # Process the received data here
-        print("Received data:", data_list) # for the moment
-        return JsonResponse({'status': 'Data received successfully'})
+        # print("Received data:", data_list) # for the moment
+        return JsonResponse(trained_model_prediction(data_list))
+        # return JsonResponse({'status': 'Data received successfully'})
+    else:
+        return JsonResponse({'error': 'Only POST requests are allowed'})
+
+def symptoms(request):
+    if request.method == 'POST':
+        return JsonResponse(symptoms())
+        # return JsonResponse({'status': 'Data received successfully'})
     else:
         return JsonResponse({'error': 'Only POST requests are allowed'})
