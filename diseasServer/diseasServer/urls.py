@@ -20,6 +20,6 @@ from .views import post_request_managing, getSymptoms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('predict/', post_request_managing)
+    path('predict/', post_request_managing),
     path('getSymptoms/', getSymptoms)
 ]
