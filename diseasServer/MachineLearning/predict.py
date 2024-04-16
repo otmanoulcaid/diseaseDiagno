@@ -12,6 +12,7 @@ import pandas as pd
 
 def parse_input(user_input):
     df = pd.read_csv("DataSet.csv")
+    result = df.iloc[:, -1].unique()
     labelEnc = LabelEncoder()
     df['prognosis'] = labelEnc.fit_transform(df['prognosis'])
     X_train = df.iloc[: , :-1]
@@ -23,10 +24,10 @@ def parse_input(user_input):
             user_feat.append(1)
         else:
             user_feat.append(0)
-    return (X_train, y_train, user_feat)
+    return (X_train, y_train, user_feat, result)
 
 def trained_model_prediction(input_feat):
-    X_train, y_train, user_feat = parse_input(input_feat)
+    X_train, y_train, user_feat, result = parse_input(input_feat)
     user_feat_df = pd.DataFrame(columns=X_train.columns)
     user_feat_df.loc[0] = user_feat
     features = X_train.columns
@@ -42,20 +43,26 @@ def trained_model_prediction(input_feat):
     # model = GaussianNB()
     # model = SVC()
     ##predict label based on non reduced data
-    ovr_classifier = OneVsRestClassifier(model)
-    ovr_classifier.fit(X_train, y_train)
-    predicted = ovr_classifier.predict(user_feat_df)
+    # model = OneVsRestClassifier(model)
+    model.fit(X_train, y_train)
+    predicted = model.predict(user_feat_df)
     ##predict label based on reduced features
     # ovr_classifier.fit(X_train_reduced, y_train)
     # predicted = ovr_classifier.predict(X_test_reduced)
-    return (features[predicted])
-
-
-feats = ['blister', 'red_sore_around_nose', 'yellow_crust_ooze']
-result = trained_model_prediction(feats)
-print(result[0])
+    print("-------------------------------------------------------------")
+    print(X_train.iloc[:, :6])
+    print("-------------------------------------------------------------")
+    print(y_train.tolist())
+    print("-------------------------------------------------------------")
+    print(predicted)
+    print("-------------------------------------------------------------")
+    return (result[predicted])
 
 def symptoms():
     df = pd.read_csv("DataSet.csv")
     symptoms = df.iloc[: , :-1]
     return (symptoms.columns.tolist())
+
+def Description(ds):
+    df = pd.read_csv("conditionDescriptions.csv")
+    return (df[ds])

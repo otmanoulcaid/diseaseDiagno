@@ -1,23 +1,34 @@
 import json
 from django.http import JsonResponse
-from MachineLearning.predict import trained_model_prediction, symptoms
+from django.views.decorators.csrf import csrf_exempt
+from MachineLearning.predict import trained_model_prediction, symptoms, Description
 
-def post_request_managing(request):
+@csrf_exempt
+def predict(request):
     if request.method == 'POST':
-        # data = request.POST  # If form data is sent in simple format (we get it as dictionary)
         data_json_str = request.body.decode('utf-8')
         # Convert the JSON string to a Python list
         data_list = json.loads(data_json_str)
-        # print("Received data:", data_list) # for the moment
-        return JsonResponse(trained_model_prediction(data_list))
-        # return JsonResponse({'status': 'Data received successfully'})
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'})
+        prediction = trained_model_prediction(data_list).tolist() #call the predictif model
+        object_result = {
+            'condition' : prediction[0],
+            'description' : Description(prediction[0])[0]
+        }
+        return JsonResponse(object_result, safe=False)
+    return JsonResponse(['Only POST requests are allowed'])
 
+@csrf_exempt
 def getSymptoms(request):
     if request.method == 'GET':
         result = symptoms()
-        return JsonResponse(result)
-        # return JsonResponse({'status': 'Data received successfully'})
-    else:
-        return JsonResponse({'error': 'Only POST requests are allowed'})
+        return JsonResponse(result, safe=False)
+    return JsonResponse(['Only GET requests are allowed'])
+
+@csrf_exempt
+def getDescription(request, ds):
+    if ds is None:
+        return JsonResponse(['you should pass a condition as an argument'])
+    if request.method == 'GET':
+        result = Description(ds)
+        return JsonResponse(result, safe=False)
+    return JsonResponse(['Only POST requests are allowed'])
