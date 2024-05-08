@@ -1,6 +1,0 @@
-DecisionTreeClassifier(criterion='entropy', max_depth=16, min_samples_split=6)
-{'criterion': 'entropy', 'max_depth': 16, 'min_samples_split': 6, 'splitter': 'best'}
-0.98739837398374
-LogisticRegression(C=0.1, max_iter=200, solver='liblinear')
-{'C': 0.1, 'max_iter': 200, 'penalty': 'l2', 'solver': 'liblinear'}
-0.99013983767201
