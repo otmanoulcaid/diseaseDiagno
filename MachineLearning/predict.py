@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 def parse_input(user_input):
-    df = pd.read_csv("DataSet.csv")
+    df = pd.read_csv("MachineLearning/DataSet.csv")
     result = df.iloc[:, -1].unique()
     X_train = df.iloc[: , :-1]
     y_train = df.iloc[:, -1]
@@ -32,10 +32,11 @@ def Description(ds):
     return (df[ds])
 
 def symptoms():
-    df = pd.read_csv("DataSet.csv")
+    df = pd.read_csv("MachineLearning/DataSet.csv")
     symptoms = df.iloc[: , :-1]
     return (symptoms.columns.tolist())
 
+# print (symptoms())
 
 #for model testing
 
