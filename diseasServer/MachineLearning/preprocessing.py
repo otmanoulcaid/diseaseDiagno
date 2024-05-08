@@ -6,7 +6,6 @@ class   FeatureGetter(TransformerMixin, BaseEstimator):
         return self
     def transform(self, X):
         return X.iloc[:, :-1]
-    def
 
 class   LabelGetter(TransformerMixin, BaseEstimator):
     def fit(self, X, y=None):
