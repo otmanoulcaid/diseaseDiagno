@@ -21,14 +21,14 @@ def trained_model_prediction(input_feat):
     symptoms, conditions, user_feat = parse_input(input_feat)
     user_feat_df = pd.DataFrame(columns=symptoms)
     user_feat_df.loc[0] = user_feat
-    model = joblib.load("knn.pkl")
-    # model = joblib.load("DecisionTree.pkl")
-    # model = joblib.load("LogesticRegression.pkl")
+    model = joblib.load("MachineLearning/knn.pkl")
+    # model = joblib.load("MachineLearning/DecisionTree.pkl")
+    # model = joblib.load("MachineLearning/LogesticRegression.pkl")
     predicted = model.predict(user_feat_df)
     return (conditions[predicted[0]])
 
 def Description(ds):
-    df = pd.read_csv("conditionDescriptions.csv")
+    df = pd.read_csv("MachineLearning/conditionDescriptions.csv")
     return (df[ds])
 
 def symptoms():

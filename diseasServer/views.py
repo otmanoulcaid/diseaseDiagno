@@ -10,10 +10,10 @@ def predict(request):
 		data_json_str = request.body.decode('utf-8')
 		# Convert the JSON string to a Python list
 		data_list = json.loads(data_json_str)
-		prediction = trained_model_prediction(data_list).tolist() #call the predictif model
+		prediction = trained_model_prediction(data_list["Symptom"]) #call the predictif model
 		object_result = {
-			'condition' : prediction[0],
-			'description' : Description(prediction[0])[0]
+			'condition' : prediction,
+			'description' : Description(prediction)[0]
 		}
 		return JsonResponse(object_result, safe=False)
 	return JsonResponse(['Only POST requests are allowed'])
